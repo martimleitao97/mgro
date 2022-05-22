@@ -1,0 +1,115 @@
+
+{smcl}
+{title:Title}
+
+{p2col:{bf:mgro}} Intensive and Extensive Margins Growth Rate Decomposition
+
+{marker syntax}{...}
+
+{title:Syntax}
+
+{p}
+
+{cmd:mgro} {varlist}{cmd:} [{help if}{cmd:}] [, {it:options}]
+
+{marker description}{...}
+
+{title:Description}
+
+{pstd}
+
+{cmd:mgro} decomposes the growth rate of any continuous variable over time into an intensive margin growth effect, 
+and an extensive margin growth effect. Furthermore, it decomposes the extensive margin into the contribution of entrant units and that 
+of exiting units, in the spirit of Gopinath and Neiman (2014)'s paper, {it: Trade Adjustments and Productivity in Large Crises}.
+This function requires having installed the egenmore and gtools packages and assumes a panel dataset structure. Three variables 
+must be specified as arguments following the command name: the first variable is the time dimension (year, quarter etc.), the second 
+is the variable of interest (firm sales, firm exports, firm imports etc.) and finally the third argument is the unit of analysis 
+(firm ID, worker ID, product ID, etc.).
+
+{marker options}{...}
+
+{title:Options}
+
+{phang}{opt de:tail(string)} Please select either true or false. If true is specified
+additional information is provided on the {it:fraction} of total growth explained by each 
+component. 
+
+{phang}{opt pre:serve(string)} Please select either true or false. If true is specified
+the original dataset will remain unaltered and the decomposition is presented in the output window.
+If false is specified, the decomposition is presented in the output window {it:and} in the
+dataset itself, changing the existing data. If neither is specified, the original dataset is not 
+preserved by default. 
+
+{phang}{opt title(string)} Specifies a title for the plot.
+
+{phang}{opt gra:ph(string)} Specifies whether the graph should be displayed.
+Select either true or false.
+
+{phang}{cmdab:lcolor1(}{it:{help colorstyle}}{cmd:)} Specifies the line color in the graph for the {it:intensive} margin effect.
+
+{phang}{cmdab:lcolor2(}{it:{help colorstyle}}{cmd:)} Specifies the line color in the graph for the {it:extensive} margin effect.
+
+{phang}{cmdab:lp:attern(}{it:{help linepatternstyle}}{cmd:)} Specifies the line patterns.
+
+{phang}{cmdab:lw:idth(}{it:{help linewidthstyle}}{cmd:)} Specifies the line width.
+
+{phang}{opt leg:end(string)} Specifies whether graph legend is to be shown. Select either on or off. 
+
+{phang}{opt legpo:sition(numeric)} Specifies the position of the legend.
+
+{phang}{cmdab:ring(}{it:{help ringposstyle}}{cmd:)} Choices for location: distance from plot region.
+
+{phang}{opt tposition(string)} Specifies whether tick position is to be displayed inside or outside.
+
+{marker author}{...}
+
+{title:Author}
+
+{pstd}
+
+Martim Leit{c a~}o
+martimleitao97@gmail.com
+Center of Economics for Prosperity, Catolica-Lisbon
+
+{marker examples}{...}
+
+{title:Examples}
+
+{hline}
+
+{pstd}Setup: consider a panel dataset following different firms - uniquely identified by {cmd:firm_ID} - over time, {cmd:year}. 
+Yearly firm exports are given by a variable {cmd:export_var}. Total export growth in the economy between consecutive 
+periods can be split into the contribution of incumbent, newly entring and exiting firms in the economy.
+
+{phang2}{cmd:. mgro year export_var firm_ID}
+
+Should you wish to decompose total growth in shares as well, consider running:
+
+{phang2}{cmd:. mgro year export_var firm_ID, detail(true)}
+
+For a graphical representation of your findings, consider running
+
+{phang2}{cmd:. mgro year export_var firm_ID, graph(true) legend(on) lcolor1(black) lcolor2(red) title(Growth Decomposition)}
+
+Alternatively, use the preserve(false) option, and generate your own plot using twoway() at your discretion with the automatically 
+generated variables:
+
+{phang2}{cmd:. mgro year export_var firm_ID, graph(false) pre(false)}
+
+{phang2}{cmd:. tw line Extensive year, lcolor(black) || line Intensive year, lcolor(red)}
+
+{hline}
+
+{marker note}{...}
+
+{title:Note}
+
+{pstd}Notes: (i) Command was written in STATA 17.0. (ii) If T periods exist in the dataset, T-1 growth rates are computed and decomposed.
+
+{marker References}{...}
+
+{title:References} 
+
+{pstd} Gopinath, Gita, and Brent Neiman. 2014. {it:Trade Adjustment and Productivity in Large Crises.}, American Economic Review 104 (3): 793-831.
+
+{hline}
