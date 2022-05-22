@@ -1,2 +1,2 @@
 # mgro
-Growth Decomposition Function
+Growth Rate Decomposition Function
