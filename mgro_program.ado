@@ -1,7 +1,7 @@
 
 program define mgro
 
-				* Author: Martim Leitão, Católica Lisbon and Center of Economics for Prosperity
+				* Author: Martim Leitao, Northwestern University, Kellogg School of Management
 				* Date: 22/05/2022
 				version 17.0 
 				syntax varlist(min=3 max=3) [if] [ ,LCOLOR1(string) ///
