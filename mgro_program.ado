@@ -220,7 +220,7 @@ program define mgro
 				qui: egen intgrow = rowmax(intg_*)	
 				drop intg_*
 				
-				// Entrant contribution
+				// Entrant contribution 
 				
 				qui: sum `1', de
 				local minp = `r(min)'+1
